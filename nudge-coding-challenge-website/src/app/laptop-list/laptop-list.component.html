@@ -1,0 +1,52 @@
+<div *ngIf="loading">
+  <div class="col-md-12 text-center" *ngIf="laptopList?.length === 0">
+    <p>Loading...</p>
+  </div>
+</div>
+<div *ngIf="!loading">
+  <div>
+    <div class="col-md-12 text-center" *ngIf="laptopList?.length === 0">
+      <p>No laptop loaded</p>
+    </div>
+  </div>
+  <h1>Laptop List</h1>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="laptopList" multiTemplateDataRows>
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">
+          <h3>{{ element.name }}</h3>
+        </td>
+      </ng-container>
+
+      <!-- Price Column -->
+      <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let element">
+          <h3>{{ element.price | currency: "GBP" }}</h3>
+        </td>
+      </ng-container>
+
+      <!-- Select Column -->
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>Select</th>
+        <td mat-cell *matCellDef="let element">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="openLaptopConfigurationModal(element)"
+          >
+            Select
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-row *matRowDef="let element; columns: columnsToDisplay"></tr>
+    </table>
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
+  </div>
+</div>
