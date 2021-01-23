@@ -25,8 +25,6 @@ export class LaptopService {
   }
 
   public addToBasket(basketItem: BasketItem): Observable<any> {
-    console.log(basketItem);
-
     return this.httpClient
       .post("https://localhost:5001/LaptopShop/basket/add", basketItem)
       .pipe(map((data: any) => data));

@@ -20,11 +20,7 @@
   <h2>Laptop: {{ laptop.name }}</h2>
   <h2>Price: {{ laptop.price | currency: "GBP" }}</h2>
   <div class="mat-elevation-z8">
-    <table
-      mat-table
-      [dataSource]="laptopConfigurationList"
-      multiTemplateDataRows
-    >
+    <mat-table [dataSource]="laptopConfigurationList" multiTemplateDataRows>
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -78,7 +74,7 @@
           selectedLaptopConfigurations.indexOf(element) != -1 ? 'lightblue' : ''
         "
       ></tr>
-    </table>
+    </mat-table>
     <mat-paginator
       [pageSize]="10"
       [pageSizeOptions]="[5, 10, 20]"

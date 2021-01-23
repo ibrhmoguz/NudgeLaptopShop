@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Metadata.Ecma335;
 using System.Threading.Tasks;
 using Nudge.Coding.Challenge.Api.Interfaces;
 using Nudge.Coding.Challenge.Api.Models;
