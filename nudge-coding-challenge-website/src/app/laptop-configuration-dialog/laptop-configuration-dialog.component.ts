@@ -59,10 +59,6 @@ export class LaptopConfigurationDialogComponent implements OnInit {
             LaptopConfiguration
           >(data);
         }),
-        catchError((error: any) => {
-          console.error(error);
-          return of();
-        }),
         finalize(() => {
           this.loading = false;
         })
@@ -126,10 +122,6 @@ export class LaptopConfigurationDialogComponent implements OnInit {
               verticalPosition: this.verticalPosition,
             }
           );
-        }),
-        catchError((error: any) => {
-          console.error(error);
-          return of();
         }),
         finalize(() => {
           this.loading = false;

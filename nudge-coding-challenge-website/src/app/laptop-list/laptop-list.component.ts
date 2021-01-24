@@ -44,10 +44,6 @@ export class LaptopListComponent implements OnInit {
         tap((data: Laptop[]) => {
           this.laptopList = new MatTableDataSource<Laptop>(data);
         }),
-        catchError((error: any) => {
-          console.error(error);
-          return of();
-        }),
         finalize(() => {
           this.loading = false;
         })

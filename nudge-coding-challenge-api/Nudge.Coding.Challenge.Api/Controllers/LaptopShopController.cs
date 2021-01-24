@@ -9,18 +9,18 @@ namespace Nudge.Coding.Challenge.Api.Controllers
     [Route("[controller]")]
     public class LaptopShopController : ControllerBase
     {
-        private ILaptopService LaptopService { get; }
+        private ILaptopService _laptopService { get; }
 
         public LaptopShopController(ILaptopService laptopService)
         {
-            LaptopService = laptopService;
+            _laptopService = laptopService;
         }
 
         [Route("laptop/list")]
         [HttpGet]
         public async Task<ActionResult> LaptopList()
         {
-            var list = await this.LaptopService.GetLaptopList();
+            var list = await _laptopService.GetLaptopList();
             return Ok(list);
         }
 
@@ -28,7 +28,7 @@ namespace Nudge.Coding.Challenge.Api.Controllers
         [HttpPost]
         public async Task<ActionResult> AddToBasket([FromBody] BasketItem laptop)
         {
-            var basket = await this.LaptopService.AddToBasket(laptop);
+            var basket = await _laptopService.AddToBasket(laptop);
             return Ok(basket);
         }
 
@@ -37,7 +37,7 @@ namespace Nudge.Coding.Challenge.Api.Controllers
         [HttpGet]
         public async Task<ActionResult> ConfigurationList()
         {
-            var list = await this.LaptopService.GetConfigurationList();
+            var list = await _laptopService.GetConfigurationList();
             return Ok(list);
         }
     }
