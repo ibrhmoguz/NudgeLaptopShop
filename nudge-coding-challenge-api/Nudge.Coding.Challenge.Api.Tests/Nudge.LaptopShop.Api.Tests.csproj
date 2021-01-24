@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Nudge.Coding.Challenge.Api\Nudge.Coding.Challenge.Api.csproj" />
+    <ProjectReference Include="..\Nudge.Coding.Challenge.Api\Nudge.LaptopShop.Api.csproj" />
   </ItemGroup>
 
 </Project>

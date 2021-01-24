@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Nudge.Coding.Challenge.Api.Models
+namespace Nudge.LaptopShop.Api.Models
 {
     public class Basket
     {
@@ -21,8 +21,8 @@ namespace Nudge.Coding.Challenge.Api.Models
 
     public class BasketItems
     {
-        public Laptop Laptop { get; set; }
-        public List<LaptopConfiguration> LaptopConfigurations { get; set; }
+        public int LaptopId { get; set; }
+        public List<int> LaptopConfigurationIdList { get; set; }
         public decimal TotalPrice
         {
             get
@@ -30,6 +30,10 @@ namespace Nudge.Coding.Challenge.Api.Models
                 return decimal.Add(Laptop?.Price ?? 0, LaptopConfigurations.Sum(configuration => configuration.Price));
             }
         }
+
+        // Navigation Properties
+        public Laptop Laptop { get; set; }
+        public ICollection<LaptopConfiguration> LaptopConfigurations { get; set; }
 
         public BasketItems()
         {

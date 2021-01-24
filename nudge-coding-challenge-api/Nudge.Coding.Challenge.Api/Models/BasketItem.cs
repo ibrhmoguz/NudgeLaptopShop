@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Nudge.Coding.Challenge.Api.Models
+namespace Nudge.LaptopShop.Api.Models
 {
     public class BasketItem
     {

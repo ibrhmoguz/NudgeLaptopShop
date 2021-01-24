@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Nudge.Coding.Challenge.Api.Models;
+using Nudge.LaptopShop.Api.Models;
 
-namespace Nudge.Coding.Challenge.Api.Interfaces
+namespace Nudge.LaptopShop.Api.Interfaces
 {
     public interface ILaptopService
     {

@@ -1,14 +1,6 @@
-﻿using System.Net.Http;
-using FluentAssertions;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Moq;
-using Nudge.Coding.Challenge.Api.Controllers;
-using Nudge.Coding.Challenge.Api.Interfaces;
-using Nudge.Coding.Challenge.Api.Services;
-using Xunit;
+﻿using Xunit;
 
-namespace Nudge.Coding.Challenge.Api.Tests.Controllers
+namespace Nudge.LaptopShop.Api.Tests.Controllers
 {
     public class NudgeCodingChallengeControllerTests
     {

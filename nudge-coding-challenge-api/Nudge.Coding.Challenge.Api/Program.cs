@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Nudge.Coding.Challenge.Api
+namespace Nudge.LaptopShop.Api
 {
     public static class Program
     {

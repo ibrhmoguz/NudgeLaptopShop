@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Nudge.Coding.Challenge.Api.Tests
+namespace Nudge.LaptopShop.Api.Tests
 {
     public class HealthCheckTests
     {

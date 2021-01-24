@@ -1,4 +1,4 @@
-﻿namespace Nudge.Coding.Challenge.Api.Models
+﻿namespace Nudge.LaptopShop.Api.Models
 {
     public class LaptopConfiguration
     {

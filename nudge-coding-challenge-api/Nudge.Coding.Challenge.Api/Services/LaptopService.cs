@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Nudge.Coding.Challenge.Api.Interfaces;
-using Nudge.Coding.Challenge.Api.Models;
+using Nudge.LaptopShop.Api.Interfaces;
+using Nudge.LaptopShop.Api.Models;
 
-namespace Nudge.Coding.Challenge.Api.Services
+namespace Nudge.LaptopShop.Api.Services
 {
     public class LaptopService : ILaptopService
     {
@@ -54,8 +54,7 @@ namespace Nudge.Coding.Challenge.Api.Services
             basket.BasketItems.Add(new BasketItems
             {
                 Laptop = _laptopList.ToList().SingleOrDefault(l => l.Id == laptop.LaptopId),
-                LaptopConfigurations = _laptopConfigurationList
-                    .Where(c => laptop.LaptopConfigurationIdList.Contains(c.Id)).ToList()
+                LaptopConfigurationIdList = laptop.LaptopConfigurationIdList
             });
             return await Task.Run(() => basket);
         }

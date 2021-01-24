@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Nudge.Coding.Challenge.Api.Interfaces;
-using Nudge.Coding.Challenge.Api.Models;
+using Nudge.LaptopShop.Api.Interfaces;
+using Nudge.LaptopShop.Api.Models;
 
-namespace Nudge.Coding.Challenge.Api.Controllers
+namespace Nudge.LaptopShop.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]

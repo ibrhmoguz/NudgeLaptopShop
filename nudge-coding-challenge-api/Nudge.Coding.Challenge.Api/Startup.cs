@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Nudge.Coding.Challenge.Api.Interfaces;
-using Nudge.Coding.Challenge.Api.Services;
+using Nudge.LaptopShop.Api.Interfaces;
+using Nudge.LaptopShop.Api.Services;
 
-namespace Nudge.Coding.Challenge.Api
+namespace Nudge.LaptopShop.Api
 {
     public class Startup
     {
