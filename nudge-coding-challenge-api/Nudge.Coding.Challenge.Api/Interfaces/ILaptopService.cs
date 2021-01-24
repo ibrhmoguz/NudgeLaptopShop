@@ -9,6 +9,6 @@ namespace Nudge.LaptopShop.Api.Interfaces
 
         Task<LaptopConfiguration[]> GetConfigurationList();
 
-        Task<Basket> AddToBasket(BasketItem laptop);
+        Task<BasketViewModel> AddToBasket(BasketItem laptop);
     }
 }

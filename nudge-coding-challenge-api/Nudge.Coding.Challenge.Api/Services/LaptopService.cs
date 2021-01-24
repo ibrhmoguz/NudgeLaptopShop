@@ -25,7 +25,7 @@ namespace Nudge.LaptopShop.Api.Services
             new LaptopConfiguration {Id = 6, Name = "Color", Value = "Blue", Price = (decimal) 34.56},
         }.ToArray();
 
-        private Basket basket = new Basket();
+        private readonly BasketViewModel _basket = new BasketViewModel();
 
         public LaptopService()
         {
@@ -42,7 +42,7 @@ namespace Nudge.LaptopShop.Api.Services
             return await Task.Run(() => _laptopConfigurationList);
         }
 
-        public async Task<Basket> AddToBasket(BasketItem laptop)
+        public async Task<BasketViewModel> AddToBasket(BasketItem laptop)
         {
             // Fetch basket 
 
@@ -51,12 +51,13 @@ namespace Nudge.LaptopShop.Api.Services
             // Save basket down to db
 
             // return basket
-            basket.BasketItems.Add(new BasketItems
+            _basket.BasketItems.Add(new BasketItems
             {
                 Laptop = _laptopList.ToList().SingleOrDefault(l => l.Id == laptop.LaptopId),
-                LaptopConfigurationIdList = laptop.LaptopConfigurationIdList
+                LaptopConfigurations = _laptopConfigurationList.ToList()
+                    .Where(lc => laptop.LaptopConfigurationIdList.Contains(lc.Id)).ToList()
             });
-            return await Task.Run(() => basket);
+            return await Task.Run(() => _basket);
         }
     }
 }

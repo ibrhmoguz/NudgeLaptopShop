@@ -5,6 +5,16 @@ namespace Nudge.LaptopShop.Api.Models
 {
     public class Basket
     {
+        
+        public int LaptopId { get; set; }
+        public int LaptopConfigurationId { get; set; }
+
+        public Laptop Laptop { get; set; }
+        public LaptopConfiguration LaptopConfiguration { get; set; }
+    }
+
+    public class BasketViewModel
+    {
         public List<BasketItems> BasketItems { get; set; }
         public decimal TotalPrice
         {
@@ -13,7 +23,7 @@ namespace Nudge.LaptopShop.Api.Models
                 return BasketItems.Sum(items => items.TotalPrice);
             }
         }
-        public Basket()
+        public BasketViewModel()
         {
             BasketItems = new List<BasketItems>();
         }
@@ -21,8 +31,8 @@ namespace Nudge.LaptopShop.Api.Models
 
     public class BasketItems
     {
-        public int LaptopId { get; set; }
-        public List<int> LaptopConfigurationIdList { get; set; }
+        public Laptop Laptop { get; set; }
+        public List<LaptopConfiguration> LaptopConfigurations { get; set; }
         public decimal TotalPrice
         {
             get
@@ -30,10 +40,6 @@ namespace Nudge.LaptopShop.Api.Models
                 return decimal.Add(Laptop?.Price ?? 0, LaptopConfigurations.Sum(configuration => configuration.Price));
             }
         }
-
-        // Navigation Properties
-        public Laptop Laptop { get; set; }
-        public ICollection<LaptopConfiguration> LaptopConfigurations { get; set; }
 
         public BasketItems()
         {

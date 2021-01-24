@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Nudge.LaptopShop.Api.Data;
 using Nudge.LaptopShop.Api.Interfaces;
 using Nudge.LaptopShop.Api.Services;
 
@@ -31,6 +33,10 @@ namespace Nudge.LaptopShop.Api
                         .AllowAnyHeader();
                 });
             });
+
+            // Register EF core
+            services.AddDbContext<LaptopShopContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Register laptop service
             services.AddSingleton<ILaptopService, LaptopService>();
