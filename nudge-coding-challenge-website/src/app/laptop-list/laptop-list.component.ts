@@ -14,7 +14,7 @@ import { LaptopConfigurationDialogComponent } from "./../laptop-configuration-di
   styleUrls: ["./laptop-list.component.scss"],
 })
 export class LaptopListComponent implements OnInit {
-  public laptopList: any;
+  public laptopList: any = null;
   public columnsToDisplay: string[] = ["name", "price", "select"];
   public loading = false;
   private unsubscribe$ = new Subject<boolean>();
@@ -56,7 +56,6 @@ export class LaptopListComponent implements OnInit {
   }
 
   openLaptopConfigurationModal(laptop: Laptop) {
-    console.log(laptop);
     this.dialog.open(LaptopConfigurationDialogComponent, {
       data: laptop,
     });

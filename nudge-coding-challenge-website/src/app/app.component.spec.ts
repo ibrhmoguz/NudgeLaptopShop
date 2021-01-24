@@ -1,7 +1,7 @@
 import { TestBed, async } from "@angular/core/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { AppComponent } from "./app.component";
-import { NudgeCodingChallengeApiService } from "./services";
+import { NudgeCodingChallengeApiService, LaptopService } from "./services";
 import { MockNudgeCodingChallengeApiService } from "./testing/mock-nudge-coding-challenge-api.service";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { MatTableModule } from "@angular/material/table";
@@ -11,11 +11,14 @@ import { LaptopListComponent } from "./laptop-list/laptop-list.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { HttpClientModule } from "@angular/common/http";
+import { MockLaptopService } from "./testing/mock-laptop.service";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 describe("AppComponent", () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        BrowserAnimationsModule,
         RouterTestingModule,
         FontAwesomeModule,
         HttpClientModule,
@@ -30,6 +33,10 @@ describe("AppComponent", () => {
         {
           provide: NudgeCodingChallengeApiService,
           useClass: MockNudgeCodingChallengeApiService,
+        },
+        {
+          provide: LaptopService,
+          useClass: MockLaptopService,
         },
       ],
     }).compileComponents();

@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { Laptop } from "./../models/laptop";
 import { LaptopConfiguration } from "../models/laptop-configuration";
 import { BasketItem } from "../models/basket-item";
+import { config } from "../models/config";
 
 @Injectable({
   providedIn: "root",
@@ -14,19 +15,19 @@ export class LaptopService {
 
   public getLaptopList(): Observable<Laptop[]> {
     return this.httpClient
-      .get("https://localhost:5001/LaptopShop/laptop/list")
+      .get(`${config.API_URL}/LaptopShop/laptop/list`)
       .pipe(map((data: any) => data));
   }
 
   public getLaptopConfigurationList(): Observable<LaptopConfiguration[]> {
     return this.httpClient
-      .get("https://localhost:5001/LaptopShop/configuration/list")
+      .get(`${config.API_URL}/LaptopShop/configuration/list`)
       .pipe(map((data: any) => data));
   }
 
   public addToBasket(basketItem: BasketItem): Observable<any> {
     return this.httpClient
-      .post("https://localhost:5001/LaptopShop/basket/add", basketItem)
+      .post(`${config.API_URL}/LaptopShop/basket/add`, basketItem)
       .pipe(map((data: any) => data));
   }
 }
