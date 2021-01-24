@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Nudge.LaptopShop.Api.Data;
 using Nudge.LaptopShop.Api.Interfaces;
+using Nudge.LaptopShop.Api.Repositories;
 using Nudge.LaptopShop.Api.Services;
 
 namespace Nudge.LaptopShop.Api
@@ -38,8 +39,9 @@ namespace Nudge.LaptopShop.Api
             services.AddDbContext<LaptopShopContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            // Register laptop service
-            services.AddSingleton<ILaptopService, LaptopService>();
+            // Register laptop services
+            services.AddScoped<ILaptopService, LaptopService>();
+            services.AddScoped<ILaptopRepository, LaptopRepository>();
 
             // Enable response caching
             services.AddResponseCaching();

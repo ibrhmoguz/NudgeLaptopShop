@@ -5,7 +5,6 @@ namespace Nudge.LaptopShop.Api.Models
 {
     public class Basket
     {
-        
         public int LaptopId { get; set; }
         public int LaptopConfigurationId { get; set; }
 

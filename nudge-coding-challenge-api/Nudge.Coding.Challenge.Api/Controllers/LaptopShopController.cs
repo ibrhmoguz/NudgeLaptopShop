@@ -24,14 +24,6 @@ namespace Nudge.LaptopShop.Api.Controllers
             return Ok(list);
         }
 
-        [Route("basket/add")]
-        [HttpPost]
-        public async Task<ActionResult> AddToBasket([FromBody] BasketItem laptop)
-        {
-            var basket = await _laptopService.AddToBasket(laptop);
-            return Ok(basket);
-        }
-
         [ResponseCache(Duration = int.MaxValue)]
         [Route("configuration/list")]
         [HttpGet]
@@ -39,6 +31,14 @@ namespace Nudge.LaptopShop.Api.Controllers
         {
             var list = await _laptopService.GetConfigurationList();
             return Ok(list);
+        }
+
+        [Route("basket/add")]
+        [HttpPost]
+        public async Task<ActionResult> AddToBasket([FromBody] BasketItem laptop)
+        {
+            var basket = await _laptopService.AddToBasket(laptop);
+            return Ok(basket);
         }
     }
 }

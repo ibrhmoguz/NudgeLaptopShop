@@ -8,6 +8,7 @@ namespace Nudge.LaptopShop.Api.Services
 {
     public class LaptopService : ILaptopService
     {
+        private readonly ILaptopRepository _laptopRepository;
         private readonly Laptop[] _laptopList = new List<Laptop>
         {
             new Laptop {Id = 1,Name = "Dell",Price = (decimal) 349.87},
@@ -27,37 +28,44 @@ namespace Nudge.LaptopShop.Api.Services
 
         private readonly BasketViewModel _basket = new BasketViewModel();
 
-        public LaptopService()
+        public LaptopService(ILaptopRepository laptopRepository)
         {
-
+            _laptopRepository = laptopRepository;
         }
 
         public async Task<Laptop[]> GetLaptopList()
         {
-            return await Task.Run(() => _laptopList);
+            return await _laptopRepository.GetLaptopList();
         }
 
         public async Task<LaptopConfiguration[]> GetConfigurationList()
         {
-            return await Task.Run(() => _laptopConfigurationList);
+            return await _laptopRepository.GetConfigurationList();
         }
 
         public async Task<BasketViewModel> AddToBasket(BasketItem laptop)
         {
-            // Fetch basket 
+            // Add new laptop and its configuration into basket.
+            var basketItems = await _laptopRepository.AddToBasket(laptop);
 
-            // Add basket item into basket
+            // laptops in basket
+            var laptops = basketItems.Select(basket => basket.Laptop).Distinct().ToList();
 
-            // Save basket down to db
-
-            // return basket
-            _basket.BasketItems.Add(new BasketItems
+            // create basket view model
+            var basketViewModel = new BasketViewModel();
+            laptops.ForEach(l =>
             {
-                Laptop = _laptopList.ToList().SingleOrDefault(l => l.Id == laptop.LaptopId),
-                LaptopConfigurations = _laptopConfigurationList.ToList()
-                    .Where(lc => laptop.LaptopConfigurationIdList.Contains(lc.Id)).ToList()
+                var laptopConfigurations = basketItems.Where(b => b.Laptop.Id == l.Id).
+                    Select(l => l.LaptopConfiguration)
+                    .ToList();
+                basketViewModel.BasketItems.Add(new BasketItems
+                {
+                    Laptop = l,
+                    LaptopConfigurations = laptopConfigurations
+                });
             });
-            return await Task.Run(() => _basket);
+
+            return basketViewModel;
         }
     }
 }

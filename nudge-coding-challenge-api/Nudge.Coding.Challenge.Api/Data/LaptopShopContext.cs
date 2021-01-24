@@ -11,13 +11,13 @@ namespace Nudge.LaptopShop.Api.Data
 
         public DbSet<Laptop> Laptops { get; set; }
         public DbSet<LaptopConfiguration> LaptopConfigurations { get; set; }
-        public DbSet<Basket> Basket { get; set; }
+        public DbSet<Basket> BasketItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Laptop>().ToTable("Laptop");
             modelBuilder.Entity<LaptopConfiguration>().ToTable("LaptopConfiguration");
-            modelBuilder.Entity<Basket>().ToTable("Basket").HasKey(b => new {b.LaptopId, b.LaptopConfigurationId});
+            modelBuilder.Entity<Basket>().ToTable("Basket").HasNoKey();
         }
     }
 }
