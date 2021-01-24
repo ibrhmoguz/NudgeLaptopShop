@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Nudge.LaptopShop.Api.Common;
 using Nudge.LaptopShop.Api.Data;
 using Nudge.LaptopShop.Api.Interfaces;
 using Nudge.LaptopShop.Api.Models;
@@ -27,17 +30,29 @@ namespace Nudge.LaptopShop.Api.Repositories
 
         public async Task<Basket[]> AddToBasket(BasketItem laptop)
         {
-            var basketItems = await _laptopShopContext.BasketItems.ToListAsync();
-
-            laptop.LaptopConfigurationIdList.ForEach(lc => basketItems.Add(new Basket
+            try
             {
-                LaptopId = laptop.LaptopId,
-                LaptopConfigurationId = lc
-            }));
+                laptop.LaptopConfigurationIdList.ForEach(lc =>
+                    _laptopShopContext.BasketItems.Add(new Basket
+                    {
+                        LaptopId = laptop.LaptopId,
+                        LaptopConfigurationId = lc
+                    }));
 
-            await _laptopShopContext.SaveChangesAsync();
+                await _laptopShopContext.SaveChangesAsync();
 
-            return await _laptopShopContext.BasketItems.ToArrayAsync();
+                return await _laptopShopContext.BasketItems.ToArrayAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                if (ex.InnerException is SqlException exception  && exception.Number == 2627)
+                {
+                    //Violation of primary key. Handle Exception
+                    throw new PrimaryKeyViolationException("Laptop and configuration already added!");
+                }
+
+                throw;
+            }
         }
     }
 }

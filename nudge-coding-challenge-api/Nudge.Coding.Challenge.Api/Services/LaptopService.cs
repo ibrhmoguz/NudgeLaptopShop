@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Nudge.LaptopShop.Api.Interfaces;
@@ -49,19 +50,21 @@ namespace Nudge.LaptopShop.Api.Services
             var basketItems = await _laptopRepository.AddToBasket(laptop);
 
             // laptops in basket
-            var laptops = basketItems.Select(basket => basket.Laptop).Distinct().ToList();
+            var laptops = basketItems.Select(basket => basket.LaptopId).Distinct().ToList();
 
             // create basket view model
+            var laptopList = await _laptopRepository.GetLaptopList();
+            var laptopConfigurationList = await _laptopRepository.GetConfigurationList();
             var basketViewModel = new BasketViewModel();
-            laptops.ForEach(l =>
+            laptops.ForEach(laptopId =>
             {
-                var laptopConfigurations = basketItems.Where(b => b.Laptop.Id == l.Id).
-                    Select(l => l.LaptopConfiguration)
-                    .ToList();
+                var laptopConfigurations = basketItems.Where(b => b.LaptopId == laptopId)
+                    .Select(basket => basket.LaptopConfigurationId).ToList();
                 basketViewModel.BasketItems.Add(new BasketItems
                 {
-                    Laptop = l,
-                    LaptopConfigurations = laptopConfigurations
+                    Laptop = laptopList.FirstOrDefault(l => l.Id == laptopId),
+                    LaptopConfigurations = laptopConfigurationList.Where(lc => laptopConfigurations.Contains(lc.Id))
+                        .ToList()
                 });
             });
 

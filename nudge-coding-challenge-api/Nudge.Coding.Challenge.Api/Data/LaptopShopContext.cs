@@ -17,7 +17,7 @@ namespace Nudge.LaptopShop.Api.Data
         {
             modelBuilder.Entity<Laptop>().ToTable("Laptop");
             modelBuilder.Entity<LaptopConfiguration>().ToTable("LaptopConfiguration");
-            modelBuilder.Entity<Basket>().ToTable("Basket").HasNoKey();
+            modelBuilder.Entity<Basket>().ToTable("Basket").HasKey(b => new {b.LaptopId, b.LaptopConfigurationId});
         }
     }
 }

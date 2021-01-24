@@ -11,7 +11,7 @@
   </div>
   <h1>Laptop List</h1>
   <div class="mat-elevation-z8">
-    <mat-table [dataSource]="laptopList" multiTemplateDataRows>
+    <table mat-table [dataSource]="laptopList" multiTemplateDataRows>
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef>Name</th>
@@ -42,7 +42,7 @@
         </td>
       </ng-container>
       <tr mat-row *matRowDef="let element; columns: columnsToDisplay"></tr>
-    </mat-table>
+    </table>
     <mat-paginator
       [pageSize]="10"
       [pageSizeOptions]="[5, 10, 20]"

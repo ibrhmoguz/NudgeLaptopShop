@@ -123,6 +123,24 @@ export class LaptopConfigurationDialogComponent implements OnInit {
             }
           );
         }),
+        catchError((err, caught) => {
+          console.log(err);
+          if (
+            err.error.indexOf("Laptop and configuration already added!") !== -1
+          ) {
+            this.snackBar.open(
+              `Error: Laptop and configuration already added!`,
+              "",
+              {
+                duration: 4000,
+                horizontalPosition: this.horizontalPosition,
+                verticalPosition: this.verticalPosition,
+              }
+            );
+          }
+
+          return of();
+        }),
         finalize(() => {
           this.loading = false;
         })
