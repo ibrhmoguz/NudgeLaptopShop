@@ -13,6 +13,7 @@ namespace Nudge.LaptopShop.Api.Data
         public DbSet<LaptopConfiguration> LaptopConfigurations { get; set; }
         public DbSet<Basket> Basket { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Laptop>().ToTable("Laptop");

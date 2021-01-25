@@ -18,16 +18,30 @@ namespace Nudge.LaptopShop.Api.Repositories
             _laptopShopContext = laptopShopContext;
         }
 
+        /// <summary>
+        /// Gets the laptop list.
+        /// </summary>
+        /// <returns></returns>
         public async Task<Laptop[]> GetLaptopList()
         {
             return await _laptopShopContext.Laptops.ToArrayAsync();
         }
 
+        /// <summary>
+        /// Gets the configuration list.
+        /// </summary>
+        /// <returns></returns>
         public async Task<LaptopConfiguration[]> GetConfigurationList()
         {
             return await _laptopShopContext.LaptopConfigurations.ToArrayAsync();
         }
 
+        /// <summary>
+        /// Adds to basket.
+        /// </summary>
+        /// <param name="laptop">The laptop.</param>
+        /// <returns></returns>
+        /// <exception cref="PrimaryKeyViolationException">Laptop and configuration already added!</exception>
         public async Task<Basket[]> AddToBasket(BasketItem laptop)
         {
             try

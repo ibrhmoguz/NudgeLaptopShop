@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Nudge.LaptopShop.Api.Interfaces;
 using Nudge.LaptopShop.Api.Models;
 
 namespace Nudge.LaptopShop.Api.Services
 {
+    /// <summary>
+    /// LaptopService
+    /// </summary>
+    /// <seealso cref="Nudge.LaptopShop.Api.Interfaces.ILaptopService" />
     public class LaptopService : ILaptopService
     {
         private readonly ILaptopRepository _laptopRepository;
@@ -18,16 +20,29 @@ namespace Nudge.LaptopShop.Api.Services
             _laptopRepository = laptopRepository;
         }
 
+        /// <summary>
+        /// Gets the laptop list.
+        /// </summary>
+        /// <returns></returns>
         public async Task<Laptop[]> GetLaptopList()
         {
             return await _laptopRepository.GetLaptopList();
         }
 
+        /// <summary>
+        /// Gets the configuration list.
+        /// </summary>
+        /// <returns></returns>
         public async Task<LaptopConfiguration[]> GetConfigurationList()
         {
             return await _laptopRepository.GetConfigurationList();
         }
 
+        /// <summary>
+        /// Adds to basket.
+        /// </summary>
+        /// <param name="laptop">The laptop.</param>
+        /// <returns></returns>
         public async Task<BasketViewModel> AddToBasket(BasketItem laptop)
         {
             // Add new laptop and its configuration into basket.

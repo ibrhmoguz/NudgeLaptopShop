@@ -24,7 +24,12 @@ namespace Nudge.LaptopShop.Api.Controllers
             return Ok(list);
         }
 
-        [ResponseCache(Duration = int.MaxValue)]
+        /*
+         * Assume that configuration list not being updated frequently.
+         * Added response cache to decrease the database load of configuration list call
+         * The cache will be expired in 1 day
+         */
+        [ResponseCache(Duration = 86400)]
         [Route("configuration/list")]
         [HttpGet]
         public async Task<ActionResult> ConfigurationList()
