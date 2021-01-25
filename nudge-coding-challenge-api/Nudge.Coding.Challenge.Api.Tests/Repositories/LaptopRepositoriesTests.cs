@@ -77,26 +77,5 @@ namespace Nudge.LaptopShop.Api.Tests.Repositories
             Assert.Equal(6, result.Length);
             Assert.Equal(2, result.Select(r => r.LaptopId).Distinct().Count());
         }
-
-        
-        public async Task AddToBasket_ThrowsException_WhenLaptopAlreadyAdded()
-        {
-            // Arrange
-            await using var context = new LaptopShopContext(_options);
-            await context.Basket.AddRangeAsync(MockDataProvider.GetBasketItems());
-            await context.SaveChangesAsync();
-
-            // Act & Assert
-            var item = new BasketItem
-            {
-                LaptopId = 1,
-                LaptopConfigurationIdList = new List<int> { 1, 4, 5 }
-            };
-
-            await Assert.ThrowsAsync<ArgumentException>(async () =>
-            {
-                 await new LaptopRepository(context).AddToBasket(item);
-            });
-        }
     }
 }
