@@ -33,7 +33,7 @@ namespace Nudge.LaptopShop.Api.Repositories
             try
             {
                 laptop.LaptopConfigurationIdList.ForEach(lc =>
-                    _laptopShopContext.BasketItems.Add(new Basket
+                    _laptopShopContext.Basket.Add(new Basket
                     {
                         LaptopId = laptop.LaptopId,
                         LaptopConfigurationId = lc
@@ -41,7 +41,7 @@ namespace Nudge.LaptopShop.Api.Repositories
 
                 await _laptopShopContext.SaveChangesAsync();
 
-                return await _laptopShopContext.BasketItems.ToArrayAsync();
+                return await _laptopShopContext.Basket.ToArrayAsync();
             }
             catch (DbUpdateException ex)
             {

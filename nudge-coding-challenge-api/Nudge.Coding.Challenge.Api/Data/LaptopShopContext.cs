@@ -11,7 +11,7 @@ namespace Nudge.LaptopShop.Api.Data
 
         public DbSet<Laptop> Laptops { get; set; }
         public DbSet<LaptopConfiguration> LaptopConfigurations { get; set; }
-        public DbSet<Basket> BasketItems { get; set; }
+        public DbSet<Basket> Basket { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
